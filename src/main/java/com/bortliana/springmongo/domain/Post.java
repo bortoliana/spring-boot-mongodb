@@ -1,5 +1,6 @@
 package com.bortliana.springmongo.domain;
 
+import com.bortliana.springmongo.dto.AuthorDTO;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
@@ -19,12 +20,12 @@ public class Post implements Serializable {
     private Date date;
     private String title;
     private String body;
-    private User author;
+    private AuthorDTO author;
 
     public Post(){
     }
 
-      public Post(String id, Date date, String title, String body, User author) {
+      public Post(String id, Date date, String title, String body, AuthorDTO author) {
         this.id = id;
         this.date = date;
         this.title = title;
