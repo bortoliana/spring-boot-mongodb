@@ -1,5 +1,6 @@
 package com.bortliana.springmongo.resources;
 
+import com.bortliana.springmongo.domain.Post;
 import com.bortliana.springmongo.domain.User;
 import com.bortliana.springmongo.dto.UserDTO;
 import com.bortliana.springmongo.services.UserService;
@@ -43,12 +44,16 @@ public class UserResource {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
-
      @RequestMapping (value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Void> update(@RequestBody UserDTO objDto, @PathVariable String id){
         User obj = service.fromDTO(objDto);
         obj.setId(id);
         obj = service.update(obj);
         return ResponseEntity.noContent().build();
+    }
+    @RequestMapping(value="/{id}/posts", method=RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User obj = service.findById(id);
+        return ResponseEntity.ok().body(obj.getPost());
     }
 }
